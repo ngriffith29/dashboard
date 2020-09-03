@@ -11,6 +11,7 @@ function District() {
     const [brokenMouse, setBrokenMouse] = useState([])
     const [brokenCharge, setBrokenCharge] = useState([])
     const [currentlyBroke, setCurrentlyBroke] = useState([])
+    const [currentlyCheckedOut, setCurrentlyCheckedOut] = useState([])
  let data1 = { 
      
     labels: ['ES', 'MS', 'HS'],
@@ -98,6 +99,25 @@ const options = {
 
 
 
+            axios.get('https://chromeapi.herokuapp.com/forgot')
+            .then(function (response) {
+            
+                response.data.map((e) => {
+                    return (
+                            
+                        setCurrentlyCheckedOut(currentlyCheckedOut => [...currentlyCheckedOut,e])
+                        )
+                 
+                })
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+
+
+
     }, []);
 
 
@@ -109,12 +129,13 @@ const options = {
     return (
         <div>
             <h1>There are currently {currentlyBroke.length} devices waiting to be fixed district wide</h1>
+    <h1>There are currently {currentlyCheckedOut.length} devices checked out district wide</h1>
             <div className="chart1">
-            <Pie data={data1} width={"10%"} height={2} options={options} />
+            <Pie data={data1} width={5} height={2} options={options} />
             </div>
 
             <div className="chart-2">
-           <Bar data={bar} options={barOptions} height={"10%"} width={"40px"}  />
+           <Bar data={bar} options={barOptions}  />
             </div>
   
   

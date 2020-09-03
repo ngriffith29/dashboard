@@ -5,6 +5,7 @@ import District from './components/District'
 import ES from './components/ES';
 import MS from './components/Ms'
 import HS from './components/Hs'
+import MsTix from './components/msTix'
 function App() {
   return (
     <div >
@@ -16,6 +17,7 @@ function App() {
    <Route exact path="/es" component={ES} />
    <Route exact path="/ms" component={MS} />
    <Route exact path="/hs" component={HS} />
+   <Route exact path="/ms/tix" component={MsTix} />
 
 
 
